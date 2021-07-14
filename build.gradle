@@ -2,6 +2,11 @@ plugins {
     id 'java'
 }
 
+tasks.withType(JavaCompile){
+
+    options.encoding = "UTF-8"
+}
+
 group 'br.org.thoughtWorks'
 version '1.0-SNAPSHOT'
 
@@ -9,6 +14,34 @@ repositories {
     mavenCentral()
 }
 
+test {
+    // Enable JUnit 5 (Gradle 4.6+).
+    useJUnitPlatform()
+
+    // Always run tests, even when nothing changed.
+    dependsOn 'cleanTest'
+
+    // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.3'
+
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.7.0'
+
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.0'
+
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.7.0'
+
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-suite-api', version: '1.7.0'
+
 }
