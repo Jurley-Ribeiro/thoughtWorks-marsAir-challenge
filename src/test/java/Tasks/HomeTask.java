@@ -21,9 +21,17 @@ public class HomeTask {
         validateLoadingHomePage();
     }
 
+
+    public void clickOnTheLogo() {
+
+        home.getPageTitleLogo().click();
+        validateLoadingHomePage();
+
+    }
+
     private void validateLoadingHomePage() {
         try{
-            String label = home.getPageTitleLabel().getText();
+            String label = home.getPageTitleLogo().getText();
             assertEquals(label, "MarsAir");
 //                Report.log(Status.PASS, "Login Realizado : " + label , Screenshot.fullPageBase64(driver));
         }catch (Exception e){

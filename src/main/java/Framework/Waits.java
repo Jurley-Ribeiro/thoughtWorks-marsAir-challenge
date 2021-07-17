@@ -35,4 +35,15 @@ public class Waits {
         }
     }
 
+    public  WebElement clickableElement(WebElement element){
+        try{
+
+            return new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(element));
+
+        }catch (WebDriverException e){
+
+            return element;
+        }
+    }
+
 }

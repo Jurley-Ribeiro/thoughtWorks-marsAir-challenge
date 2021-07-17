@@ -15,7 +15,7 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public WebElement getPageTitleLabel() {
+    public WebElement getPageTitleLogo() {
         return wait.visibilityOfElement(By.xpath("//h1/a"));
     }
 

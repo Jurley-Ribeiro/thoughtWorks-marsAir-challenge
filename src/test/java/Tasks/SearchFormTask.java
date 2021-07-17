@@ -3,20 +3,19 @@ package Tasks;
 import Framework.Waits;
 import PageObjects.HomePage;
 import PageObjects.SearchFormPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SearchFormTask {
 
     private static WebDriver driver;
+    private static HomePage home;
     private static SearchFormPage searchForm;
     private static Waits wait;
 
@@ -24,6 +23,7 @@ public class SearchFormTask {
 
         this.driver = driver;
         searchForm = new SearchFormPage(this.driver);
+        home = new HomePage(this.driver);
     }
 
     public void selectTravelDate(String departureMonth, String returnMonth){
@@ -37,7 +37,6 @@ public class SearchFormTask {
     public void searchFlights(){
 
         searchForm.getSearchButton().click();
-
 
     }
 
@@ -56,6 +55,17 @@ public class SearchFormTask {
     public void validatesIfTheMessageAppearsInAProminentOnThePage(String highlightMessage) {
 
         assertEquals(highlightMessage, searchForm.getSearchFormPageSubTitleLabel().getText());
+
+    }
+
+    public void clickOnTheMessageShouldGoToHomepage() {
+        try {
+            wait.clickableElement(searchForm.getSearchFormPageSubTitleLabel()).click();
+            assertTrue(home.getPageTitleLogo().isDisplayed());
+        }catch (NullPointerException e){
+            System.out.println("Error: Element not clicklable. -> " + e.getMessage());
+        }
+
     }
 
     public void validatesTheListOfMonthsDepartureAndReturnFlights(){

@@ -16,13 +16,12 @@ public class PromotionalCodes extends TestBase {
     SearchResultsTask searchResults = new SearchResultsTask(driver);
 
     @Test
-    void OpenMarsAir() throws InterruptedException {
+    void mustDisplayMessageWhenSearchingInvalidTrips() {
 
         home.loadPage();
         searchForm.selectTravelDate("July", "December (two years from now)");
         searchForm.searchFlights();
 
-        Thread.sleep(5000);
     }
 
 

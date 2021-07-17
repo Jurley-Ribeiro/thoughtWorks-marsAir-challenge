@@ -27,7 +27,15 @@ public class LinkToHomePage extends TestBase {
 
         home.loadPage();
         searchForm.validatesIfTheMessageAppearsInAProminentOnThePage("Book a ticket to the red planet now!");
+        searchForm.clickOnTheMessageShouldGoToHomepage();
 
+    }
+
+    @Test
+    void clickingOnTheLogoShouldTakeToTheHomepage(){
+
+        home.loadPage();
+        home.clickOnTheLogo();
 
     }
 
