@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 public class SearchFormPage {
 
     private WebDriver driver;
@@ -20,6 +22,10 @@ public class SearchFormPage {
         return wait.visibilityOfElement(By.xpath("//div[@id='content']/h2"));
     }
 
+    public WebElement getSearchFormPageSubTitleLabel() {
+        return wait.visibilityOfElement(By.xpath("//div[@id='content']/form/h3"));
+    }
+
     public WebElement getDepartingField() {
         return wait.visibilityOfElement(By.id("departing"));
     }
@@ -27,6 +33,18 @@ public class SearchFormPage {
     public Select getDepartingDropdown() {
         Select monthsDeparture = new Select(driver.findElement(By.id("departing")));
         return monthsDeparture;
+    }
+
+    public List<WebElement> getAllOptionsDepartureElements(){
+
+        return driver.findElements(By.xpath("//select[@id='departing']/option"));
+
+    }
+
+    public List<WebElement> getAllOptionsReturnElements(){
+
+        return driver.findElements(By.xpath("//select[@id='departing']/option"));
+
     }
 
     public WebElement getReturningField() {

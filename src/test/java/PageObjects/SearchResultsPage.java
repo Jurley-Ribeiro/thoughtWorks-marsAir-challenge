@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class SearchResultsPage {
 
     private WebDriver driver;
@@ -15,19 +17,19 @@ public class SearchResultsPage {
         this.driver = driver;
     }
 
-    public WebElement getSearchResultsText() {
+    public WebElement getTitleSearchResults() {
+        return wait.visibilityOfElement(By.xpath("//div[@id='content']/h2"));
+    }
+
+    public WebElement getTextFirstParagraph() {
         return wait.visibilityOfElement(By.xpath("//div[@id='content']/p[1]"));
     }
 
-    public WebElement getSearchResultsText2() {
-        return wait.visibilityOfElement(By.id("content"));
-    }
-
-    public WebElement getSearchResultsText3() {
-        return wait.visibilityOfElement(By.xpath("//div[@id='content']//p//node()"));
+    public WebElement getTextSecondParagraph() {
+        return wait.visibilityOfElement(By.xpath("//div[@id='content']/p[2]"));
     }
 
     public WebElement getBackLink() {
-        return wait.visibilityOfElement(By.xpath("//div[@id='content']/p/a"));
+        return wait.visibilityOfElement(By.xpath("//a[contains(text(),'Back')]"));
     }
 }

@@ -16,15 +16,21 @@ public class LinkToHomePage extends TestBase {
     SearchResultsTask searchResults = new SearchResultsTask(driver);
 
     @Test
-    void OpenMarsAir() throws InterruptedException {
+    void shouldMessageAppearSomewhereProminentlyPage() {
 
         home.loadPage();
-        searchForm.selectTravelDate("July", "December (two years from now)");
-        searchForm.searchFlights();
-        searchResults.seatsFound("Seats available! Call now on 0800 MARSAIR to book!");
-
-        Thread.sleep(5000);
+        searchForm.validatesIfTheMessageAppearsInAProminentOnThePage("Book a ticket to the red planet now!");
     }
+
+    @Test
+    void clickingOnTheMessageShouldTakeToHomepage(){
+
+        home.loadPage();
+        searchForm.validatesIfTheMessageAppearsInAProminentOnThePage("Book a ticket to the red planet now!");
+
+
+    }
+
 
 
 }

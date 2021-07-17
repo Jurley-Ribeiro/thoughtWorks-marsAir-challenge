@@ -21,7 +21,6 @@ public class InvalidReturnDates extends TestBase {
         home.loadPage();
         searchForm.selectTravelDate("July", "December (two years from now)");
         searchForm.searchFlights();
-        searchResults.seatsFound("Seats available! Call now on 0800 MARSAIR to book!");
 
         Thread.sleep(5000);
     }

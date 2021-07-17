@@ -1,7 +1,6 @@
 package Tasks;
 
 import Framework.Waits;
-import PageObjects.SearchFormPage;
 import PageObjects.SearchResultsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,23 +20,35 @@ public class SearchResultsTask {
         searchResults = new SearchResultsPage(this.driver);
     }
 
-    public void seatsFound(String text){
+    public void validateMessageIfThereAreSeats(String expectedText){
 
         validateSearchResultsPageLoad();
-        //assertEquals(text, searchResults.getSearchResultsText().getText());
-        System.out.println("text: " + searchResults.getSearchResultsText().getText());
-        System.out.println("text2: " + searchResults.getSearchResultsText2().getText());
-        System.out.println("text3: " + searchResults.getSearchResultsText3().getText());
 
-        assertTrue(text.contains(searchResults.getSearchResultsText().getText()));
+        assertTrue(concatenateParagraphsMessage().contains(expectedText));
 
     }
 
+    public void validateMessageIfThereAreNoSeats(String expectedText){
+
+        validateSearchResultsPageLoad();
+
+        assertTrue(searchResults.getTextFirstParagraph()
+                .getText()
+                .contains(expectedText));
+
+    }
+
+    private String concatenateParagraphsMessage() {
+
+        String searchResultsFullMessage = String.join(" ", searchResults.getTextFirstParagraph().getText(), searchResults.getTextSecondParagraph().getText());
+        return searchResultsFullMessage;
+
+    }
 
     private void validateSearchResultsPageLoad() {
         try{
 
-            assertTrue(searchResults.getSearchResultsText().isDisplayed());
+            assertTrue(searchResults.getTitleSearchResults().isDisplayed());
 //                Report.log(Status.PASS, "Login Realizado : " + label , Screenshot.fullPageBase64(driver));
         }catch (Exception e){
             e.getMessage();
