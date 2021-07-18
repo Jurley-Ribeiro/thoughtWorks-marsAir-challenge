@@ -3,7 +3,9 @@ package Tasks;
 import Framework.Waits;
 import PageObjects.SearchResultsPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,6 +40,21 @@ public class SearchResultsTask {
 
     }
 
+    public void checkSearchResultsMessage(String message) {
+
+        validateSearchResultsPageLoad();
+
+        List<String> listElements = new ArrayList<>();
+
+        for (int i = 0; i < searchResults.getSearchResultsMessage().size() - 1; i++) {
+
+            listElements.add(searchResults.getSearchResultsMessage().get(i).getText());
+        }
+
+//        assertTrue(list.contains(message));
+        assertEquals(message, String.join(" ", listElements));
+
+    }
     private String concatenateParagraphsMessage() {
 
         String searchResultsFullMessage = String.join(" ", searchResults.getTextFirstParagraph().getText(), searchResults.getTextSecondParagraph().getText());

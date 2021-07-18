@@ -25,5 +25,18 @@ public class InvalidReturnDates extends TestBase {
         Thread.sleep(5000);
     }
 
+    @Test
+    void mustDisplayMessageWhenReturnDateLessThanOneYearFromDeparture() {
+
+        home.loadPage();
+        searchForm.validatesTheListOfMonthsDepartureAndReturnFlights();
+        searchForm.selectTravelDate("July", "December (two years from now)");
+//        searchForm.selectTravelDate("July", "December");
+        searchForm.searchFlights();
+//        searchResults.teste("Unfortunately, this schedule is not possible. Please try again.");
+        searchResults.checkSearchResultsMessage("Seats available! Call now on 0800 MARSAIR to book!");
+
+    }
+
 
 }

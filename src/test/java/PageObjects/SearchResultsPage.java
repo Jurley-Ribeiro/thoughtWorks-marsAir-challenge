@@ -29,6 +29,14 @@ public class SearchResultsPage {
         return wait.visibilityOfElement(By.xpath("//div[@id='content']/p[2]"));
     }
 
+    public WebElement getTextSecondParagraph4() {
+        return wait.visibilityOfElement(By.xpath("//div[@id='content']/p"));
+    }
+
+    public List<WebElement> getSearchResultsMessage() {
+        return driver.findElements(By.xpath("//div[@id='content']/p"));
+    }
+
     public WebElement getBackLink() {
         return wait.visibilityOfElement(By.xpath("//a[contains(text(),'Back')]"));
     }
